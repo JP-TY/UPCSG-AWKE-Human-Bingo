@@ -1,0 +1,21 @@
+{
+  "name": "human-bingo-infra",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "synth": "npm run build && cdk synth",
+    "diff": "npm run build && cdk diff",
+    "deploy": "npm run build && cdk deploy"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "2.270.0",
+    "constructs": "10.8.1"
+  },
+  "devDependencies": {
+    "aws-cdk": "2.1143.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.2"
+  }
+}

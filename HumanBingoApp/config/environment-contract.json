@@ -1,0 +1,32 @@
+{
+  "title": "Human Bingo deployment environment",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["NODE_ENV", "SESSION_SECRET", "PUBLIC_APP_ORIGIN"],
+  "anyOf": [
+    { "required": ["DATABASE_URL"] },
+    {
+      "required": ["DATABASE_HOST", "DATABASE_NAME", "DATABASE_USER", "DATABASE_PASSWORD"]
+    }
+  ],
+  "properties": {
+    "NODE_ENV": { "enum": ["development", "test", "production"] },
+    "API_PORT": { "type": "string", "pattern": "^[1-9][0-9]{0,4}$" },
+    "DATABASE_URL": { "type": "string", "format": "postgres-url" },
+    "DATABASE_HOST": { "type": "string", "minLength": 1 },
+    "DATABASE_PORT": { "type": "string", "pattern": "^[1-9][0-9]{0,4}$" },
+    "DATABASE_NAME": { "type": "string", "minLength": 1 },
+    "DATABASE_USER": { "type": "string", "minLength": 1 },
+    "DATABASE_PASSWORD": { "type": "string", "minLength": 1 },
+    "TEST_DATABASE_URL": { "type": "string", "format": "postgres-url" },
+    "SESSION_SECRET": { "type": "string", "minLength": 32 },
+    "PUBLIC_APP_ORIGIN": { "type": "string", "format": "https-origin-in-production" },
+    "CORS_ORIGINS": { "type": "string", "minLength": 1 },
+    "DATABASE_SSL_MODE": { "enum": ["disable", "require", "verify-full"] },
+    "BACKUP_DIR": { "type": "string", "minLength": 1 },
+    "WAL_ARCHIVE_DIR": { "type": "string", "minLength": 1 },
+    "VAPID_PUBLIC_KEY": { "type": "string", "minLength": 1 },
+    "VAPID_PRIVATE_KEY": { "type": "string", "minLength": 1 },
+    "VAPID_SUBJECT": { "type": "string", "format": "uri" }
+  }
+}
