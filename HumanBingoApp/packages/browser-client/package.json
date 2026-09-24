@@ -1,0 +1,32 @@
+{
+  "name": "@human-bingo/browser-client",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./state": {
+      "types": "./dist/state.d.ts",
+      "import": "./dist/state.js"
+    },
+    "./transport": {
+      "types": "./dist/transport.d.ts",
+      "import": "./dist/transport.js"
+    },
+    "./realtime-client": {
+      "types": "./dist/realtime-client.d.ts",
+      "import": "./dist/realtime-client.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc -b --pretty false"
+  },
+  "dependencies": {
+    "@human-bingo/domain": "0.1.0",
+    "qrcode-generator": "^2.0.4"
+  }
+}
