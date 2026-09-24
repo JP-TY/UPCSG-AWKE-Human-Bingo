@@ -2,6 +2,7 @@ FROM node:22-alpine AS build
 WORKDIR /app
 COPY package*.json ./
 COPY packages ./packages
+COPY scripts ./scripts
 COPY tsconfig*.json eslint.config.js .prettierrc.json ./
 RUN npm ci && npm run build --workspace @human-bingo/api && npm run build --workspace @human-bingo/worker
 
