@@ -1,0 +1,22 @@
+{
+  "name": "@human-bingo/api",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc -b --pretty false"
+  },
+  "dependencies": {
+    "@human-bingo/domain": "0.1.0",
+    "@human-bingo/persistence": "0.1.0",
+    "@human-bingo/worker": "0.1.0",
+    "pg": "8.23.0"
+  }
+}
