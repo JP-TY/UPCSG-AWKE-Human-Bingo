@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run validate:environment
+        env:
+          NODE_ENV: test
+          DATABASE_URL: postgresql://localhost:5432/human_bingo_ci
+          TEST_DATABASE_URL: postgresql://localhost:5432/human_bingo_ci_test
+          SESSION_SECRET: ci-only-secret-that-is-at-least-32-characters-long
+          PUBLIC_APP_ORIGIN: http://127.0.0.1:4173
+          DATABASE_SSL_MODE: disable
+      - run: docker compose -f deploy/compose.yml config
+        env:
+          DATABASE_URL: postgresql://human_bingo:ci-password@postgres:5432/human_bingo
+          SESSION_SECRET: ci-only-secret-that-is-at-least-32-characters-long
+          PUBLIC_APP_ORIGIN: https://example.invalid
+          POSTGRES_PASSWORD: ci-password
+          WAL_ARCHIVE_DIR: /tmp/human-bingo-wal
+          API_START_COMMAND: node packages/api/dist/index.js
+          WORKER_START_COMMAND: node packages/worker/dist/index.js
+      - run: npm run test:browser:install
+      - run: npm run build
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run test:unit
+      - run: npm run test:property
+      - run: npm run test:integration
+      - run: npm run test:browser
+      - run: npm run test:accessibility

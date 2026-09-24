@@ -1,0 +1,11 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/domain" },
+    { "path": "./packages/persistence" },
+    { "path": "./packages/api" },
+    { "path": "./packages/browser-client" },
+    { "path": "./packages/worker" },
+    { "path": "./packages/test-utils" }
+  ]
+}

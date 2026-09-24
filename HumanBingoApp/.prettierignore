@@ -1,0 +1,9 @@
+node_modules
+dist
+packages/browser-client/dist-web
+packages/test-utils/src/config.js
+packages/test-utils/src/config.d.ts
+coverage
+playwright-report
+test-results
+.kiro

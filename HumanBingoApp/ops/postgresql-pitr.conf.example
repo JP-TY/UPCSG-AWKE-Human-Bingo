@@ -1,0 +1,7 @@
+# Include these settings in a managed PostgreSQL instance, then validate WAL restore
+# in a disposable recovery environment. Replace the archive path with a durable,
+# encrypted object-storage mount or managed archive target.
+wal_level = replica
+archive_mode = on
+archive_timeout = 60s
+archive_command = 'test ! -f /var/backups/human-bingo/wal/%f && cp %p /var/backups/human-bingo/wal/%f'
