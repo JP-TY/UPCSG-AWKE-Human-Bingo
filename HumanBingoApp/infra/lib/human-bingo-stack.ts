@@ -68,7 +68,7 @@ export class HumanBingoStack extends cdk.Stack {
 
     const database = new rds.DatabaseInstance(this, 'GameDatabase', {
       engine: rds.DatabaseInstanceEngine.postgres({
-        version: rds.PostgresEngineVersion.VER_16_6,
+        version: rds.PostgresEngineVersion.VER_16_9,
       }),
       instanceType: ec2.InstanceType.of(
         ec2.InstanceClass.BURSTABLE4_GRAVITON,
