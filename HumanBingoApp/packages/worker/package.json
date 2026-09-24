@@ -1,0 +1,23 @@
+{
+  "name": "@human-bingo/worker",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./service-worker": {
+      "types": "./dist/service-worker-entry.d.ts",
+      "import": "./dist/service-worker-entry.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc -b --pretty false"
+  },
+  "dependencies": {
+    "@human-bingo/domain": "0.1.0"
+  }
+}
