@@ -1,0 +1,1688 @@
+{
+  "pbtResults": {
+    "1. Write the verification bug-condition exploration test before implementing the fix": {
+      "status": "passed",
+      "failingExample": "No counterexample: the deterministic request→reject→retry sequence passed on the current in-memory adapter (versions 1, 2, and 3 remained consistent). This records non-reproduction of the persistence-adapter mismatch, not proof that the design risk is absent.",
+      "lastRunTimestamp": 1786848970547
+    },
+    "2. Write preservation property tests before implementing the fix": {
+      "status": "passed",
+      "failingExample": "",
+      "lastRunTimestamp": 1786849273201
+    },
+    "3.2 Verify the bug-condition exploration test now passes": {
+      "status": "passed",
+      "failingExample": "",
+      "lastRunTimestamp": 1786853556500
+    },
+    "3.3 Verify preservation tests still pass": {
+      "status": "passed",
+      "failingExample": "",
+      "lastRunTimestamp": 1786853563554
+    }
+  },
+  "executionHistory": {
+    "1.1 Scaffold the TypeScript monorepo/packages for the browser client, API/application services, domain package, persistence package, worker/service-worker code, and test utilities.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781445637
+      },
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781456521
+      },
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786782487646
+      }
+    ],
+    "1.2 Define shared domain types, enums, command/result contracts, typed errors, IDs, timestamps, and authorization-safe DTOs for games, tasks, invitations, memberships, grids, squares, verification requests, notifications, completions, leaderboards, snapshots, and patches.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781445813
+      },
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786782502994
+      },
+      {
+        "executionId": "a1dc1abd-69ec-4e97-8442-317def192ca7",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786783453781
+      }
+    ],
+    "1.3 Add the initial unit-test harness, fixtures, deterministic clock/randomness injection, database-test configuration, browser-test configuration, and CI test commands used by subsequent tasks.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781445891
+      },
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786782511044
+      },
+      {
+        "executionId": "a1dc1abd-69ec-4e97-8442-317def192ca7",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786783467697
+      }
+    ],
+    "2.1 Create PostgreSQL migrations and repository models for `games`, `task_entries`, `invitations`, `browser_sessions`, `memberships`, `participants`, `player_profiles`, `grids`, `squares`, `verification_requests`, `notifications`, `push_subscriptions`, `completions`, and `outbox_events`.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781445974
+      },
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786782521913
+      },
+      {
+        "executionId": "a1dc1abd-69ec-4e97-8442-317def192ca7",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786783476663
+      }
+    ],
+    "2.2 Implement transaction helpers and repositories for atomic lifecycle mutations, row locking/serializable commands, idempotency keys, monotonically increasing game `state_version`, and transactional outbox writes.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781446031
+      },
+      {
+        "executionId": "a1dc1abd-69ec-4e97-8442-317def192ca7",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786783490260
+      },
+      {
+        "executionId": "4e9a5eb2-9b9f-4399-83a5-fc7307c28aac",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786784150685
+      },
+      {
+        "executionId": "4e9a5eb2-9b9f-4399-83a5-fc7307c28aac",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786785806749
+      }
+    ],
+    "2.3 Implement outbox publishing and idempotent event-consumer primitives for ordered game patches, notification work, push delivery work, and snapshot fallback.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781446084
+      },
+      {
+        "executionId": "4e9a5eb2-9b9f-4399-83a5-fc7307c28aac",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786786372626
+      },
+      {
+        "executionId": "5de10217-df67-4d8c-9af1-d4d9ec7482ec",
+        "chatSessionId": "sess_0ef173ee-e633-44db-ba2b-7b1caab3622a",
+        "timestamp": 1786844945233
+      }
+    ],
+    "2.4 Write the fast-check property test for **Property 1: Normalized draft task-bag invariant**.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781446142
+      },
+      {
+        "executionId": "4e9a5eb2-9b9f-4399-83a5-fc7307c28aac",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786786378066
+      },
+      {
+        "executionId": "5de10217-df67-4d8c-9af1-d4d9ec7482ec",
+        "chatSessionId": "sess_0ef173ee-e633-44db-ba2b-7b1caab3622a",
+        "timestamp": 1786844949976
+      }
+    ],
+    "2.5 Write the fast-check property test for **Property 2: Opening and first-join lifecycle invariant**.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781446199
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812293859
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812735774
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786813079418
+      }
+    ],
+    "3.1 Implement host/session creation, secure session-cookie rotation, CSRF token issuance/validation, resumable membership credentials, logout/revocation, expiry, and session authorization-version checks.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781446294
+      },
+      {
+        "executionId": "a1dc1abd-69ec-4e97-8442-317def192ca7",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786783497539
+      },
+      {
+        "executionId": "4e9a5eb2-9b9f-4399-83a5-fc7307c28aac",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786784154594
+      },
+      {
+        "executionId": "4e9a5eb2-9b9f-4399-83a5-fc7307c28aac",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786785811531
+      }
+    ],
+    "3.2 Add server-side authorization middleware and scoped query policies for host-only setup, member-only snapshots/leaderboards, participant-owned resumable access, identified-participant responses, WebSocket subscriptions, and closed-game read-only access.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781446350
+      },
+      {
+        "executionId": "4e9a5eb2-9b9f-4399-83a5-fc7307c28aac",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786786382986
+      },
+      {
+        "executionId": "5de10217-df67-4d8c-9af1-d4d9ec7482ec",
+        "chatSessionId": "sess_0ef173ee-e633-44db-ba2b-7b1caab3622a",
+        "timestamp": 1786844955710
+      }
+    ],
+    "4.1 Implement the Game Configuration Service for create/edit name, normalized task add/edit/remove, distinct-count validation, open/reopen semantics, first-join task-bag locking, close transition, and atomic rejection after lock/closure.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781446407
+      },
+      {
+        "executionId": "a1dc1abd-69ec-4e97-8442-317def192ca7",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786783503904
+      },
+      {
+        "executionId": "4e9a5eb2-9b9f-4399-83a5-fc7307c28aac",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786784158858
+      },
+      {
+        "executionId": "4e9a5eb2-9b9f-4399-83a5-fc7307c28aac",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786785815209
+      }
+    ],
+    "4.2 Implement the Invitation Service for one cryptographically random uppercase-alphanumeric six-character Join_Code per game, opaque invitation token hashing, canonical link generation, QR encoding/decoding, resolution previews, expiry/revocation checks, and closure invalidation.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781446463
+      },
+      {
+        "executionId": "4e9a5eb2-9b9f-4399-83a5-fc7307c28aac",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786786387431
+      }
+    ],
+    "4.3 Write the fast-check property test for **Property 3: Invitation representation round trip**.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781446509
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812293953
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812741138
+      }
+    ],
+    "5.1 Implement idempotent onboarding and resume in the Membership and Grid Services.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781446570
+      },
+      {
+        "executionId": "4e9a5eb2-9b9f-4399-83a5-fc7307c28aac",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786786391588
+      },
+      {
+        "executionId": "5de10217-df67-4d8c-9af1-d4d9ec7482ec",
+        "chatSessionId": "sess_0ef173ee-e633-44db-ba2b-7b1caab3622a",
+        "timestamp": 1786844959877
+      }
+    ],
+    "5.2 Implement cryptographically seeded, independently shuffled grid generation and atomic persistence.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781446618
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812294014
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812745352
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786813085869
+      }
+    ],
+    "5.3 Write the fast-check property test for **Property 4: Onboarding and resume idempotence**.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781446680
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812294082
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786814606227
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786815899637
+      }
+    ],
+    "5.4 Write the fast-check property test for **Property 5: Randomized grid permutation**.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781446744
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812294139
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786814606187
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786815899707
+      }
+    ],
+    "6.1 Implement the Verification and Completion Service command handlers for request, confirm, and reject.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781446805
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812294197
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812304363
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812725250
+      }
+    ],
+    "6.2 Write the fast-check state-machine test for **Property 6: Verification request state machine**.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781446862
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812294254
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812749097
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786813091078
+      }
+    ],
+    "6.3 Implement durable in-app notification creation/resolution in the request transaction and pending-request/history queries.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781446920
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812294308
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812753006
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786813095096
+      }
+    ],
+    "6.4 Implement optional Web Push registration, service-worker delivery/click-through, permission handling, provider failure recording, stale-subscription cleanup, and deep-link payloads.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781446991
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812294363
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786814606389
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786815899853
+      }
+    ],
+    "6.5 Write the fast-check property test for **Property 7: Durable notification lifecycle**.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781447057
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812294419
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786814606630
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786815900109
+      }
+    ],
+    "7.1 Implement the documented HTTP API routes for game creation/configuration, invitation representations/resolution, onboarding, snapshots, verification commands, notifications, and push subscriptions.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781447113
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812294478
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786814606835
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786815900362
+      }
+    ],
+    "7.2 Implement the authenticated WebSocket gateway, game-channel authorization, heartbeat/reconnect protocol, ordered versioned patch emission, event deduplication, payload bounds, and `snapshot_required` handling.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781447180
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812294528
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786816177733
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786816435403
+      }
+    ],
+    "7.3 Implement the frontend transport and normalized authoritative view cache.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781447239
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812294579
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786817505831
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786818094309
+      }
+    ],
+    "7.4 Write the fast-check property test for **Property 8: Versioned patch and stale-command safety**.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781447304
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812294635
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786818111260
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786819308292
+      }
+    ],
+    "7.5 Write the transactional integration/property test for **Property 9: Same-square concurrency invariant**.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781447361
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812294682
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786816178043
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786816435689
+      }
+    ],
+    "8.1 Implement pure completion predicates for Blackout, all five horizontal Lines, all five vertical Lines, both diagonals, and the fixed deduplicated 16-position Hashtag pattern.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781447419
+      },
+      {
+        "executionId": "a1dc1abd-69ec-4e97-8442-317def192ca7",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786783508815
+      },
+      {
+        "executionId": "4e9a5eb2-9b9f-4399-83a5-fc7307c28aac",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786784163762
+      },
+      {
+        "executionId": "4e9a5eb2-9b9f-4399-83a5-fc7307c28aac",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786785819785
+      }
+    ],
+    "8.2 Extend verification transactions to evaluate newly affected completion keys and insert idempotent completion records atomically with original completion timestamps and versioned leaderboard changes.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781447480
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812294731
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786813802633
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786814593870
+      }
+    ],
+    "8.3 Implement leaderboard queries/projections and DTOs for Blackout totals/entries, distinct Line counts, and Hashtag counts.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781447541
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812294785
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786815909880
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786816170131
+      }
+    ],
+    "8.4 Write the fast-check property test for **Property 10: Positional completion predicates**.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781447607
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812294840
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786816178113
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786816435663
+      }
+    ],
+    "8.5 Write the fast-check transactional test for **Property 11: Completion insertion idempotence and counts**.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781447670
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812294886
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786816178273
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786816854611
+      }
+    ],
+    "8.6 Write the fast-check test for **Property 12: Deterministic leaderboard ordering**.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781447739
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812294932
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786816178504
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786816854921
+      }
+    ],
+    "9.1 Implement the app shell, routing, session bootstrap, error boundary, design-system controls/dialogs/alerts, focus styles, status tokens, and responsive CSS primitives.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781447801
+      },
+      {
+        "executionId": "a1dc1abd-69ec-4e97-8442-317def192ca7",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786783514652
+      },
+      {
+        "executionId": "4e9a5eb2-9b9f-4399-83a5-fc7307c28aac",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786784169536
+      },
+      {
+        "executionId": "4e9a5eb2-9b9f-4399-83a5-fc7307c28aac",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786785824400
+      }
+    ],
+    "9.2 Implement host setup, task editing/open/close screens, invitation code/link/share/QR presentation, invitation errors, join resolution, onboarding completion, Player_Code display, and resume UI.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781447875
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812294983
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786816861477
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786817493402
+      }
+    ],
+    "9.3 Implement the semantic 25-button grid, square selection/dialog or inline verification form, Player_Code validation feedback, status text/icon/patterns, in-app notification inbox, pending actions, confirm/reject controls, and state announcements.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781447939
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812295038
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786818111621
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786819312072
+      }
+    ],
+    "9.4 Implement the separately labeled Blackout, Line, and Hashtag leaderboard views, progress totals, empty states, synchronized update handling, closed-game read-only banner, and final historical request/status display.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781448002
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812295093
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786819325873
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786840513979
+      }
+    ],
+    "9.5 Add browser/component tests for onboarding/resume, host task validation, invitations and QR presentation, grid verification, notifications, all three leaderboard labels/empty states, closed read-only mode, and synchronization-driven selective UI updates.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781448087
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812295146
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786840522450
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786840881065
+      }
+    ],
+    "10.1 Add API/integration authorization tests for host/member/nonmember/identified-participant/other-participant sessions, cross-game codes, expired/revoked/closed invitations, CSRF failures, stale state, rate limits, and no-mutation/no-data-leak guarantees.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781448148
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812295199
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786816861965
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786817493667
+      }
+    ],
+    "10.2 Add notification/push integration tests for permission granted/denied/unavailable, provider success/failure, service-worker click-through, stale subscriptions, request resolution, pending counts, and in-app fallback as source of truth.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781448253
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812295243
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786817506325
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786818094640
+      }
+    ],
+    "10.3 Add browser accessibility and responsive validation for keyboard-only operation, focus visibility, semantic labels/dialogs, screen-reader status announcements, axe checks, contrast thresholds, non-color status indicators, reduced motion, and 320px/600px/1024px layout breakpoints.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781448325
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812295288
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786818111936
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786819317317
+      }
+    ],
+    "10.4 Add realtime end-to-end tests with at least two authorized browser clients for accepted request/confirm/reject propagation, identical versions/patches, five-second delivery target, reconnect snapshot synchronization, event gaps, duplicate events, stale commands, and close during pending requests.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781448388
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812295325
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786818112241
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786819321122
+      }
+    ],
+    "11.1 Implement structured correlation-ID logging, request/command metrics, synchronization and event-delivery timing, stale-command and push-failure metrics, authorization-denial audit events, health/readiness checks, and safe error reporting.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781448451
+      },
+      {
+        "executionId": "4e9a5eb2-9b9f-4399-83a5-fc7307c28aac",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786785828925
+      },
+      {
+        "executionId": "4e9a5eb2-9b9f-4399-83a5-fc7307c28aac",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786786368358
+      }
+    ],
+    "11.2 Add deployable frontend/API/worker/service-worker packaging, environment/schema validation, migration execution and rollback checks, HTTPS/security-header configuration, CSP/frame-ancestors policy, database backup/PITR configuration, outbox replay tooling, and CI gates for typecheck/lint/unit/property/integration/browser/accessibility tests.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781448516
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812295397
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786840890922
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786842099111
+      }
+    ],
+    "11.3 Add automated resilience/security checks for input limits, parameterized queries, origin/CORS policy, CSRF/session behavior, rate limits, WebSocket heartbeat/backoff, bounded event payloads, broker outage recovery, and snapshot rebuild from authoritative storage.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781448584
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812295434
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786813803206
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786814594197
+      }
+    ],
+    "11.4 Write the fast-check/integration test for **Property 13: Closed-game terminal immutability**.": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781448649
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812295478
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786817506586
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786818094689
+      }
+    ],
+    "12. Checkpoint - Ensure all required implementation tasks are integrated and all enabled tests pass": [
+      {
+        "executionId": "6b81aaf4-7cef-4ea2-82a3-acbbff6f6010",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786781448708
+      },
+      {
+        "executionId": "51935952-5efa-4358-99ab-a70119e000ff",
+        "chatSessionId": "sess_cfd91725-5ef3-4181-a5ad-200b41b9f6ac",
+        "timestamp": 1786812295528
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786842993778
+      }
+    ],
+    "1. Establish the TypeScript workspace and shared contracts": [
+      {
+        "executionId": "a1dc1abd-69ec-4e97-8442-317def192ca7",
+        "chatSessionId": "sess_eff94933-829d-43c7-99b3-eaef0bc79f29",
+        "timestamp": 1786783467793
+      }
+    ],
+    "4.4 Unblock invitation-dependent property and integration coverage.": [
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786813794429
+      },
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786842110631
+      }
+    ],
+    "6. Implement verification, notification, and browser-push workflows": [
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786815900170
+      }
+    ],
+    "8. Implement positional completions and all three leaderboards": [
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786816854973
+      }
+    ],
+    "7. Implement authoritative HTTP API and realtime synchronization": [
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786819308369
+      }
+    ],
+    "10. Add security, authorization, notification, synchronization, and accessibility validation": [
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786819321194
+      }
+    ],
+    "9. Build the responsive frontend and game flows": [
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786840881131
+      }
+    ],
+    "11. Add observability, operational safeguards, and deployable packaging": [
+      {
+        "executionId": "b8aaa218-cca4-421b-a189-26c88e24ebb0",
+        "chatSessionId": "sess_6955033e-a61b-4c79-9868-751f1985b00b",
+        "timestamp": 1786842099187
+      }
+    ],
+    "2. Implement persistence, migrations, and transaction infrastructure": [
+      {
+        "executionId": "5de10217-df67-4d8c-9af1-d4d9ec7482ec",
+        "chatSessionId": "sess_0ef173ee-e633-44db-ba2b-7b1caab3622a",
+        "timestamp": 1786844950067
+      }
+    ],
+    "3. Implement authentication and resumable browser access": [
+      {
+        "executionId": "5de10217-df67-4d8c-9af1-d4d9ec7482ec",
+        "chatSessionId": "sess_0ef173ee-e633-44db-ba2b-7b1caab3622a",
+        "timestamp": 1786844955814
+      }
+    ],
+    "5. Implement onboarding, Player_Codes, and persisted randomized grids": [
+      {
+        "executionId": "5de10217-df67-4d8c-9af1-d4d9ec7482ec",
+        "chatSessionId": "sess_0ef173ee-e633-44db-ba2b-7b1caab3622a",
+        "timestamp": 1786844959946
+      }
+    ],
+    "4. Implement game setup and invitation representations": [
+      {
+        "executionId": "5de10217-df67-4d8c-9af1-d4d9ec7482ec",
+        "chatSessionId": "sess_0ef173ee-e633-44db-ba2b-7b1caab3622a",
+        "timestamp": 1786844994811
+      }
+    ],
+    "13.1 Create the Api_Runtime entry point and dependency composition root.": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846363186
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846536951
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846913721
+      }
+    ],
+    "13.2 Add integration and smoke tests for HTTP routing, WebSocket upgrades, startup failures, health, readiness, and graceful shutdown.": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846363264
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846927536
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847330805
+      }
+    ],
+    "14.1 Add Vite development proxy and production build configuration.": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846363347
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846537016
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846914067
+      }
+    ],
+    "14.2 Add single-run Vite/build/preview smoke tests.": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846363423
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846927614
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847330875
+      }
+    ],
+    "15.1 Implement typed Environment_Configuration loading and validation.": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846363489
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846376346
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846526009
+      }
+    ],
+    "15.2 Add root `dev`, `start`, and `preview` scripts with process supervision semantics.": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846363552
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846537241
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846914108
+      }
+    ],
+    "15.3 Add unit/smoke coverage for environment validation and root script behavior.": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846363607
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846927836
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847331128
+      }
+    ],
+    "16.1 Create the root Docker Compose PostgreSQL service and local environment defaults.": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846363676
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846376713
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846526333
+      }
+    ],
+    "16.2 Add Compose configuration smoke tests and teardown checks.": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846363742
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846928011
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847331356
+      }
+    ],
+    "17.1 Implement `db:wait`, `db:create`, `db:migrate`, `db:reset`, and `db:status` root commands.": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846363818
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846537475
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846914385
+      }
+    ],
+    "17.2 Wire the isolated test database lifecycle into automated test setup.": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846363898
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846928101
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847331400
+      }
+    ],
+    "17.3 Add database command and isolation integration tests.": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846363965
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847342443
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847542345
+      }
+    ],
+    "18.1 Write the root README for prerequisites, environment setup, first-run order, scripts, database commands, local URLs, health/readiness checks, isolated tests, troubleshooting, and teardown.": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846364036
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847342631
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847542867
+      }
+    ],
+    "18.2 Add a documentation/script smoke check for the README workflow.": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846364100
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847549087
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847718510
+      }
+    ],
+    "19.1 Integrate Compose startup, `db:wait`, migrations, isolated test setup, Api_Runtime, Vite development proxy, and root scripts without changing existing game-domain contracts.": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846364159
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847549681
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847718835
+      }
+    ],
+    "19.2 Add the clean-checkout local workflow integration test.": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846364248
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847732661
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847967541
+      }
+    ],
+    "20. Checkpoint - Validate runtime and local-development scope": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786846364334
+      },
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847974490
+      }
+    ],
+    "13. Implement the runnable Node API runtime and lifecycle endpoints": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847330916
+      }
+    ],
+    "14. Configure Vite browser development and production serving": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847330952
+      }
+    ],
+    "15. Add root lifecycle scripts and validated environment configuration": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847331169
+      }
+    ],
+    "16. Add pinned Docker Compose PostgreSQL for local development": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847331455
+      }
+    ],
+    "17. Implement database command workflow and isolated test database protection": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847542482
+      }
+    ],
+    "18. Add root README first-run and operations documentation": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847718572
+      }
+    ],
+    "19. Wire the complete local runtime workflow together": [
+      {
+        "executionId": "a9878e23-dd0a-440e-8b0a-bc595e40b0de",
+        "chatSessionId": "sess_a027b7ba-cebe-4da5-ab2a-07543ded3df1",
+        "timestamp": 1786847967624
+      }
+    ],
+    "1. Write the verification bug-condition exploration test before implementing the fix": [
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786848849136
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786848861578
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786848988277
+      }
+    ],
+    "2. Write preservation property tests before implementing the fix": [
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786848849220
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786848993740
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786849292814
+      }
+    ],
+    "3.1 Implement one transaction-local version allocator in the verification mutation seam": [
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786848849290
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786849298830
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786849508482
+      }
+    ],
+    "3.2 Verify the bug-condition exploration test now passes": [
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786848849344
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786849512881
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786849594122
+      }
+    ],
+    "3.3 Verify preservation tests still pass": [
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786848849387
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786849598594
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786849669831
+      }
+    ],
+    "3.4 Add/retain transaction-boundary regression cases": [
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786848849425
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786849674735
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786849878872
+      }
+    ],
+    "4.1 Add the development-only role preflight seam": [
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786848849470
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786849884271
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786850418858
+      }
+    ],
+    "4.2 Add isolated database tests and baseline observations": [
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786848849523
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786850424986
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786851061328
+      }
+    ],
+    "4.3 Document Arch/local PostgreSQL setup without destructive actions": [
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786848849571
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786851066738
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786851262252
+      }
+    ],
+    "5.1 Add the executable resolver and validation seam": [
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786848849648
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786851266363
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786852320901
+      }
+    ],
+    "5.2 Add resolver, browser-check, and accessibility coverage": [
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786848849691
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786852325340
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786853259306
+      }
+    ],
+    "6.1 Capture and classify the baseline": [
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786848849734
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786853271276
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786853387664
+      }
+    ],
+    "6.2 Apply minimal remediation and validate affected scope": [
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786848849773
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786853392943
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786853830252
+      }
+    ],
+    "7. Final checkpoint — validate all bugfix scope and classify prerequisites": [
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786848849816
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786853836229
+      },
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786854770830
+      }
+    ],
+    "3. Fix authoritative verification version transitions and validate the regression": [
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786849879012
+      }
+    ],
+    "4. Implement safe, idempotent local-only PostgreSQL role bootstrap and Arch guidance": [
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786851262321
+      }
+    ],
+    "5. Implement deterministic Arch/system/Playwright Chromium resolution and browser checks": [
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786853259404
+      }
+    ],
+    "6. Remediate only scoped lint/format findings": [
+      {
+        "executionId": "ebd5f86b-52c2-4d40-a591-43c8861a1e86",
+        "chatSessionId": "sess_f3d7696f-04fb-4ae1-b7d4-ea8f8e4ee13e",
+        "timestamp": 1786853830342
+      }
+    ]
+  },
+  "taskNotes": {
+    "2.5": "Lifecycle coverage is validated, but the Join_Code assertion remains pending on 4.2.",
+    "4.2": "Must be implemented before 4.3, 7.1, 9.2, and invitation-related validation can be completed.",
+    "4.3": "Blocked because the Invitation Service/representation-resolution seam is absent; write the valid 100+ case property test after 4.2 exists."
+  }
+}

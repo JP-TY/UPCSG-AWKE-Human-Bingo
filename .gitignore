@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+HumanBingoApp/node_modules/
+**/node_modules/
+
+# Build output
+.next/
+HumanBingoApp/packages/web/.next/
+**/.next/
+dist/
+**/dist/
+*.tsbuildinfo
+HumanBingoApp/packages/web/tsconfig.tsbuildinfo
+HumanBingoApp/packages/worker/tsconfig.tsbuildinfo
+
+# Coverage
+coverage/
+HumanBingoApp/coverage/
+
+# Env / secrets - never commit real credentials
+.env
+.env.local
+.env.*.local
+HumanBingoApp/.env
+HumanBingoApp/.env.local
+
+# CDK / infra synthesis output (regenerable)
+cdk.out/
+HumanBingoApp/infra/cdk.out/
+**/cdk.out/
+
+# Test / e2e artifacts
+test-results/
+HumanBingoApp/test-results/
+playwright-report/
+HumanBingoApp/playwright-report/
+.playwright-mcp/
+**/.playwright-mcp/
+
+# OS / editor
+.DS_Store
+*.log

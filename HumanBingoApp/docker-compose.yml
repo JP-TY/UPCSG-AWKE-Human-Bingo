@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16.6-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-human_bingo}
+      POSTGRES_USER: ${POSTGRES_USER:-human_bingo}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-human_bingo_local_password}
+    ports:
+      - '127.0.0.1:${POSTGRES_PORT:-5432}:5432'
+    volumes:
+      - human-bingo-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+volumes:
+  human-bingo-postgres-data:
+    name: human-bingo-postgres-data
