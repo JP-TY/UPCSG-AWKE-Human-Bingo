@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-25",
+  "project": "AKWE 2026 Human Bingo",
+  "currentSignals": {
+    "framework": "Vite 6.4.3 TypeScript workspace in HumanBingoApp/package.json",
+    "frontend": "vanilla DOM SPA in packages/browser-client",
+    "fontStack": "Inter + platform sans stack in packages/browser-client/src/design-system.ts",
+    "palette": "blue primary, gray surfaces, CSS string tokens in packages/browser-client/src/design-system.ts",
+    "motion": "no motion package; CSS transitions and reduced-motion rule",
+    "assets": "root Assets folder includes AKWE artwork, five local font families, 23 sticker images, and 11 portrait stamps",
+    "targetFramework": "Next.js 16 App Router in packages/web"
+  },
+  "designSourceOfTruth": "DESIGN.md",
+  "preserve": [
+    "Existing game domain, API, persistence, HTTP contract, WebSocket protocol, and tests",
+    "The Vite browser client until Next.js route parity is verified"
+  ],
+  "introduce": [
+    "AKWE scrapbook composition and OKLCH tokens",
+    "Local ransom-note font treatment with a clean Schibsted Grotesk UI face",
+    "Persisted per-grid 11-bag portrait stamps on verified squares",
+    "Next.js frontend and AWS ECS/RDS deployment artifacts"
+  ]
+}
