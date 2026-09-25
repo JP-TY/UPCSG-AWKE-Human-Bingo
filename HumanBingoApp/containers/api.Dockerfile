@@ -4,7 +4,9 @@ COPY package*.json ./
 COPY packages ./packages
 COPY scripts ./scripts
 COPY tsconfig*.json eslint.config.js .prettierrc.json ./
-RUN npm ci && npm run build --workspace @human-bingo/api && npm run build --workspace @human-bingo/worker
+RUN npm ci --fetch-retries=5 --fetch-retry-mintimeout=10000 --fetch-retry-maxtimeout=120000 \
+  && npm run build --workspace @human-bingo/api \
+  && npm run build --workspace @human-bingo/worker
 
 FROM node:22-alpine
 ENV NODE_ENV=production
