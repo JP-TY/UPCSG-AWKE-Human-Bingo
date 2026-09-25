@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { Client } from 'pg';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
@@ -50,6 +51,31 @@ describe('readEnvironment', () => {
     expect(decodeURIComponent(parsed.password)).toBe('p@ss:/?word');
     expect(parsed.searchParams.get('sslmode')).toBe('verify-full');
     expect(config.databaseSslMode).toBe('verify-full');
+  });
+  it('preserves the explicit PostgreSQL CA bundle when pg parses the connection string', () => {
+    const config = readEnvironment({
+      NODE_ENV: 'production',
+      DATABASE_HOST: 'human-bingo.cluster-example.us-east-1.rds.amazonaws.com',
+      DATABASE_PORT: '5432',
+      DATABASE_NAME: 'human_bingo',
+      DATABASE_USER: 'human_bingo',
+      DATABASE_PASSWORD: 'secret',
+      SESSION_SECRET: 'b'.repeat(48),
+      PUBLIC_APP_ORIGIN: 'https://d1234567890.cloudfront.net',
+    });
+    const caBundle = 'test-rds-ca-bundle';
+    const client = new Client({
+      connectionString: config.databaseUrl,
+      ssl: { ca: caBundle, rejectUnauthorized: true },
+    });
+    const connectionParameters = client as unknown as {
+      connectionParameters: { ssl: { ca?: string; rejectUnauthorized?: boolean } };
+    };
+
+    expect(connectionParameters.connectionParameters.ssl).toEqual({
+      ca: caBundle,
+      rejectUnauthorized: true,
+    });
   });
   it('rejects malformed URLs, ports, and short secrets without exposing values', () => {
     expect(() => readEnvironment({ ...base, DATABASE_URL: 'not-a-url' })).toThrow(
