@@ -86,6 +86,20 @@ const postgresUrl = (
   return value;
 };
 
+// node-postgres parses SSL-related connection-string parameters after the
+// explicit `ssl` config object and replaces that object. Keep TLS policy in
+// DATABASE_SSL_MODE / DATABASE_SSL_CA_PATH, not in the URL.
+const withoutPostgresSslQueryParameters = (value: string): string => {
+  const url = new URL(value);
+  for (const key of [...url.searchParams.keys()]) {
+    const normalizedKey = key.toLowerCase();
+    if (normalizedKey.startsWith('ssl') || normalizedKey === 'uselibpqcompat') {
+      url.searchParams.delete(key);
+    }
+  }
+  return url.toString();
+};
+
 const databaseConnection = (
   source: Record<string, string | undefined>,
   nodeEnv: NodeEnvironment,
@@ -101,7 +115,10 @@ const databaseConnection = (
   }
 
   const directUrl = source.DATABASE_URL?.trim();
-  if (directUrl) return { url: postgresUrl(source, 'DATABASE_URL', true)!, sslMode };
+  if (directUrl) {
+    const url = postgresUrl(source, 'DATABASE_URL', true)!;
+    return { url: withoutPostgresSslQueryParameters(url), sslMode };
+  }
 
   const host = text(source, 'DATABASE_HOST');
   const port = integer(source, 'DATABASE_PORT', 5432);
@@ -111,8 +128,8 @@ const databaseConnection = (
   const url = new URL(
     `postgresql://${encodeURIComponent(user)}:${encodeURIComponent(password)}@${host}:${port}/${encodeURIComponent(database)}`,
   );
-  url.searchParams.set('sslmode', sslMode);
-  return { url: postgresUrl({ DATABASE_URL: url.toString() }, 'DATABASE_URL', true)!, sslMode };
+  const validatedUrl = postgresUrl({ DATABASE_URL: url.toString() }, 'DATABASE_URL', true)!;
+  return { url: withoutPostgresSslQueryParameters(validatedUrl), sslMode };
 };
 const origin = (
   source: Record<string, string | undefined>,

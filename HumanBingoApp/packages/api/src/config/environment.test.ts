@@ -49,7 +49,7 @@ describe('readEnvironment', () => {
     expect(parsed.hostname).toBe('human-bingo.cluster-example.us-east-1.rds.amazonaws.com');
     expect(parsed.pathname).toBe('/human_bingo');
     expect(decodeURIComponent(parsed.password)).toBe('p@ss:/?word');
-    expect(parsed.searchParams.get('sslmode')).toBe('verify-full');
+    expect(parsed.searchParams.has('sslmode')).toBe(false);
     expect(config.databaseSslMode).toBe('verify-full');
   });
   it('preserves the explicit PostgreSQL CA bundle when pg parses the connection string', () => {
