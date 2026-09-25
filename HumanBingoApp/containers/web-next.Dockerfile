@@ -4,7 +4,8 @@ COPY package*.json ./
 COPY packages ./packages
 COPY tsconfig*.json ./
 COPY . .
-RUN npm ci && npm run build:web
+RUN npm ci --fetch-retries=5 --fetch-retry-mintimeout=10000 --fetch-retry-maxtimeout=120000 \
+  && npm run build:web
 
 FROM node:22-alpine AS runtime
 ENV NODE_ENV=production
