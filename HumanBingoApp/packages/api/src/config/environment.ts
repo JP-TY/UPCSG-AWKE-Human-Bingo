@@ -89,21 +89,28 @@ const postgresUrl = (
 // node-postgres parses SSL-related connection-string parameters after the
 // explicit `ssl` config object and replaces that object. Keep TLS policy in
 // DATABASE_SSL_MODE / DATABASE_SSL_CA_PATH, not in the URL.
-const withoutPostgresSslQueryParameters = (value: string): string => {
+const normalizePostgresConnectionString = (
+  value: string,
+): { readonly url: string; readonly sslCaPath: string | undefined } => {
   const url = new URL(value);
+  const sslCaPath = url.searchParams.get('sslrootcert')?.trim() || undefined;
   for (const key of [...url.searchParams.keys()]) {
     const normalizedKey = key.toLowerCase();
     if (normalizedKey.startsWith('ssl') || normalizedKey === 'uselibpqcompat') {
       url.searchParams.delete(key);
     }
   }
-  return url.toString();
+  return { url: url.toString(), sslCaPath };
 };
 
 const databaseConnection = (
   source: Record<string, string | undefined>,
   nodeEnv: NodeEnvironment,
-): { readonly url: string; readonly sslMode: DatabaseSslMode } => {
+): {
+  readonly url: string;
+  readonly sslMode: DatabaseSslMode;
+  readonly sslCaPath: string | undefined;
+} => {
   const configuredMode = source.DATABASE_SSL_MODE?.trim();
   const sslMode = (configuredMode ||
     (nodeEnv === 'production' ? 'verify-full' : 'disable')) as DatabaseSslMode;
@@ -117,7 +124,7 @@ const databaseConnection = (
   const directUrl = source.DATABASE_URL?.trim();
   if (directUrl) {
     const url = postgresUrl(source, 'DATABASE_URL', true)!;
-    return { url: withoutPostgresSslQueryParameters(url), sslMode };
+    return { ...normalizePostgresConnectionString(url), sslMode };
   }
 
   const host = text(source, 'DATABASE_HOST');
@@ -129,7 +136,7 @@ const databaseConnection = (
     `postgresql://${encodeURIComponent(user)}:${encodeURIComponent(password)}@${host}:${port}/${encodeURIComponent(database)}`,
   );
   const validatedUrl = postgresUrl({ DATABASE_URL: url.toString() }, 'DATABASE_URL', true)!;
-  return { url: withoutPostgresSslQueryParameters(validatedUrl), sslMode };
+  return { ...normalizePostgresConnectionString(validatedUrl), sslMode };
 };
 const origin = (
   source: Record<string, string | undefined>,
@@ -216,7 +223,8 @@ export const readEnvironment = (source: NodeJS.ProcessEnv = process.env): Enviro
     previewPort: integer(environment, 'PREVIEW_PORT', 4173),
     databaseUrl,
     databaseSslMode: database.sslMode,
-    databaseSslCaPath: environment.DATABASE_SSL_CA_PATH?.trim() || undefined,
+    databaseSslCaPath:
+      environment.DATABASE_SSL_CA_PATH?.trim() || database.sslCaPath,
     testDatabaseUrl,
     sessionSecret,
     publicAppOrigin: origin(environment, 'PUBLIC_APP_ORIGIN', 'http://localhost:4173'),
