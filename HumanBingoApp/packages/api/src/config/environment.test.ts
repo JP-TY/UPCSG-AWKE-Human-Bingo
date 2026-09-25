@@ -77,6 +77,20 @@ describe('readEnvironment', () => {
       rejectUnauthorized: true,
     });
   });
+  it('removes SSL query options from direct URLs while preserving unrelated options', () => {
+    const config = readEnvironment({
+      ...base,
+      DATABASE_SSL_MODE: 'verify-full',
+      DATABASE_URL:
+        'postgres://localhost:5432/human_bingo?sslmode=require&sslrootcert=%2Ftmp%2Frds-ca.pem&application_name=human-bingo',
+    });
+    const parsed = new URL(config.databaseUrl);
+
+    expect(parsed.searchParams.get('application_name')).toBe('human-bingo');
+    expect(parsed.searchParams.has('sslmode')).toBe(false);
+    expect(parsed.searchParams.has('sslrootcert')).toBe(false);
+    expect(config.databaseSslMode).toBe('verify-full');
+  });
   it('rejects malformed URLs, ports, and short secrets without exposing values', () => {
     expect(() => readEnvironment({ ...base, DATABASE_URL: 'not-a-url' })).toThrow(
       EnvironmentValidationError,
