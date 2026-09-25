@@ -9,6 +9,7 @@ export interface Environment {
   readonly previewPort: number;
   readonly databaseUrl: string;
   readonly databaseSslMode: DatabaseSslMode;
+  readonly databaseSslCaPath: string | undefined;
   readonly testDatabaseUrl: string | undefined;
   readonly sessionSecret: string;
   readonly publicAppOrigin: string;
@@ -198,6 +199,7 @@ export const readEnvironment = (source: NodeJS.ProcessEnv = process.env): Enviro
     previewPort: integer(environment, 'PREVIEW_PORT', 4173),
     databaseUrl,
     databaseSslMode: database.sslMode,
+    databaseSslCaPath: environment.DATABASE_SSL_CA_PATH?.trim() || undefined,
     testDatabaseUrl,
     sessionSecret,
     publicAppOrigin: origin(environment, 'PUBLIC_APP_ORIGIN', 'http://localhost:4173'),

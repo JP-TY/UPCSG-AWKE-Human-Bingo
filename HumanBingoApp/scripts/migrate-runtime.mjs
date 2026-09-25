@@ -1,9 +1,11 @@
 import './load-env.mjs';
 import { readFile } from 'node:fs/promises';
+import { readFileSync } from 'node:fs';
 import { Pool } from 'pg';
 import { readEnvironment } from '../packages/api/dist/config/environment.js';
 
 const config = readEnvironment();
+const sslCaPath = config.databaseSslCaPath;
 
 const pool = new Pool({
   connectionString: config.databaseUrl,
@@ -11,7 +13,10 @@ const pool = new Pool({
   ssl:
     config.databaseSslMode === 'disable'
       ? false
-      : { rejectUnauthorized: config.databaseSslMode === 'verify-full' },
+      : {
+          rejectUnauthorized: config.databaseSslMode === 'verify-full',
+          ...(sslCaPath ? { ca: readFileSync(sslCaPath, 'utf8') } : {}),
+        },
 });
 const client = await pool.connect();
 

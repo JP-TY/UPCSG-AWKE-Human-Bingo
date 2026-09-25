@@ -91,6 +91,7 @@ npm run validate:environment
 | `SESSION_SECRET` | placeholder | ≥ 32 chars |
 | `PUBLIC_APP_ORIGIN` | `http://localhost:4173` | Public browser origin |
 | `DATABASE_SSL_MODE` | `disable` locally | Production requires `verify-full` + HTTPS |
+| `DATABASE_SSL_CA_PATH` | unset locally | Container path to a PEM CA bundle for Postgres TLS verification; the API image ships the AWS RDS global bundle at `/usr/local/share/rds-ca-bundle.pem` and the CDK stack sets this automatically |
 | `API_PROXY_TARGET` | `http://127.0.0.1:3000` | `dev:web` rewrites `/api/*` here |
 | `WS_URL` | direct local WS | Browser connects directly locally; via ALB/CloudFront in prod |
 

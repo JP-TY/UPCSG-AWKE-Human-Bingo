@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 
 import { Pool } from 'pg';
@@ -98,7 +99,16 @@ export const startApiServer = async (
     ssl:
       config.databaseSslMode === 'disable'
         ? false
-        : { rejectUnauthorized: config.databaseSslMode === 'verify-full' },
+        : {
+            rejectUnauthorized: config.databaseSslMode === 'verify-full',
+            // RDS presents a chain rooted at an AWS CA that minimal images
+            // (e.g. node:alpine) do not trust by default. When
+            // DATABASE_SSL_CA_PATH points at a PEM bundle, verify against it
+            // instead of the system store.
+            ...(config.databaseSslCaPath
+              ? { ca: readFileSync(config.databaseSslCaPath, 'utf8') }
+              : {}),
+          },
   });
   const outboxPollIntervalMs = options.outboxPollIntervalMs ?? 500;
   try {

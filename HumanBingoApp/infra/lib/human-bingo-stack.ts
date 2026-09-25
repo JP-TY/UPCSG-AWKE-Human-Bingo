@@ -175,6 +175,7 @@ export class HumanBingoStack extends cdk.Stack {
         DATABASE_NAME: 'human_bingo',
         DATABASE_USER: 'human_bingo',
         DATABASE_SSL_MODE: 'verify-full',
+        DATABASE_SSL_CA_PATH: '/usr/local/share/rds-ca-bundle.pem',
         PUBLIC_APP_ORIGIN: `https://${distribution.distributionDomainName}`,
         INVITATION_CANONICAL_BASE_URL: `https://${distribution.distributionDomainName}`,
         API_START_COMMAND: 'node scripts/migrate-runtime.mjs && node packages/api/dist/server.js',

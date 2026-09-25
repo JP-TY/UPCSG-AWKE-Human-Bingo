@@ -10,6 +10,11 @@ FROM node:22-alpine
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
 ENV PORT=3000
+# AWS RDS CA bundle so verify-full PostgreSQL TLS works against RDS.
+# node:alpine does not ship the RDS CA chain in its default trust store.
+RUN apk add --no-cache ca-certificates curl \
+  && curl -sSL -o /usr/local/share/rds-ca-bundle.pem https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem \
+  && chmod 644 /usr/local/share/rds-ca-bundle.pem
 WORKDIR /app
 RUN addgroup -S bingo && adduser -S bingo -G bingo
 COPY --from=build --chown=bingo:bingo /app/packages/api/dist ./packages/api/dist
