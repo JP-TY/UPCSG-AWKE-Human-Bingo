@@ -20,9 +20,13 @@ RUN apk add --no-cache ca-certificates curl \
 WORKDIR /app
 RUN addgroup -S bingo && adduser -S bingo -G bingo
 COPY --from=build --chown=bingo:bingo /app/packages/api/dist ./packages/api/dist
+COPY --from=build --chown=bingo:bingo /app/packages/api/package.json ./packages/api/package.json
 COPY --from=build --chown=bingo:bingo /app/packages/domain/dist ./packages/domain/dist
+COPY --from=build --chown=bingo:bingo /app/packages/domain/package.json ./packages/domain/package.json
 COPY --from=build --chown=bingo:bingo /app/packages/persistence/dist ./packages/persistence/dist
+COPY --from=build --chown=bingo:bingo /app/packages/persistence/package.json ./packages/persistence/package.json
 COPY --from=build --chown=bingo:bingo /app/packages/worker/dist ./packages/worker/dist
+COPY --from=build --chown=bingo:bingo /app/packages/worker/package.json ./packages/worker/package.json
 COPY --from=build --chown=bingo:bingo /app/packages/persistence/src/migrations/001_initial_schema.sql ./packages/persistence/src/migrations/001_initial_schema.sql
 COPY --from=build --chown=bingo:bingo /app/packages/persistence/src/migrations/002_face_stamps.sql ./packages/persistence/src/migrations/002_face_stamps.sql
 COPY --from=build --chown=bingo:bingo /app/scripts/load-env.mjs ./scripts/load-env.mjs
