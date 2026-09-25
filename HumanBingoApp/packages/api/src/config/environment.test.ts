@@ -77,7 +77,7 @@ describe('readEnvironment', () => {
       rejectUnauthorized: true,
     });
   });
-  it('removes SSL query options from direct URLs while preserving unrelated options', () => {
+  it('moves direct URL CA paths into explicit config and preserves unrelated options', () => {
     const config = readEnvironment({
       ...base,
       DATABASE_SSL_MODE: 'verify-full',
@@ -90,6 +90,7 @@ describe('readEnvironment', () => {
     expect(parsed.searchParams.has('sslmode')).toBe(false);
     expect(parsed.searchParams.has('sslrootcert')).toBe(false);
     expect(config.databaseSslMode).toBe('verify-full');
+    expect(config.databaseSslCaPath).toBe('/tmp/rds-ca.pem');
   });
   it('rejects malformed URLs, ports, and short secrets without exposing values', () => {
     expect(() => readEnvironment({ ...base, DATABASE_URL: 'not-a-url' })).toThrow(
